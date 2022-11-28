@@ -135,17 +135,23 @@ main>#mainForm>div>textarea::placeholder {
 main>#mainForm>div>pre {
   margin: 0px;
   height: 100%;
-  overflow-y: scroll;
+  overflow: scroll;
 }
 
 main>#mainForm>div>button {
   position: absolute;
-  right: 0;
-  bottom: 0;
   width: 50px;
   height: 50px;
   font-size: 1.2rem;
   right: 25px;
+  bottom: 25px;
+  opacity: 0.5;
+  transition: 0.5s;
+}
+
+main>#mainForm>div>button:hover {
+  opacity: 1;
+  transition: 0.5s;
 }
 
 main>#mainForm>div:nth-child(2) span {
@@ -198,14 +204,14 @@ select {
 
   main>#mainForm>div,
   main>#mainForm>div>textarea {
-    height: 30vh;
+    height: 35vh;
   }
 
   main>#mainForm>div>textarea::placeholder {
     line-height: 30vh;
   }
 
-  main>#mainForm>div>button  {
+  main>#mainForm>div>button {
     bottom: unset;
     right: 0px;
     background: #3b3b3b;
@@ -215,7 +221,7 @@ select {
     border-radius: 3px;
   }
 
-  .App main>#config select{
+  .App main>#config select {
     height: 30px;
   }
 }
