@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import Titlebar from "./components/Titlebar";
 import jsonrepair from "jsonrepair";
@@ -11,27 +11,20 @@ function App() {
   const [formattedJSON, setFormattedJSON] = useState("");
   const [error, setError] = useState("");
   const [isJSONRepair, setIsJSONRepair] = useState(true);
-  const tab = useRef<string | number>(4);
-
-  const beautify = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    let jsonStr = e.target.value;
-
-    beautifyJson(jsonStr);
-  };
+  const [tab, setTab] = useState<string | number>(4);
 
   const beautifyJson = (jsonStr: string) => {
+
     if (!jsonStr) {
-      setRawJSON("");
       setFormattedJSON("");
       setError("");
       return;
     }
 
-    setRawJSON(jsonStr);
     let json = parseJson(jsonStr.replaceAll("/\n", "\\n"));
 
     if (json) {
-      setFormattedJSON(JSON.stringify(json, null, getTab(tab.current)));
+      setFormattedJSON(JSON.stringify(json, null, getTab(tab)));
     }
   };
 
@@ -55,18 +48,9 @@ function App() {
 
       return JSON.parse(json);
     } catch (e) {
-      setError("JSON is invalid");
+      setError("Invalid JSON");
       return null;
     }
-  };
-
-  const tabUpdate = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    tab.current = e.target.value;
-    beautifyJson(rawJSON);
-  };
-
-  const jsonRepairUpdate = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setIsJSONRepair(e.target.checked);
   };
 
   const copyBtnClick = () => {
@@ -83,6 +67,10 @@ function App() {
     });
   };
 
+  useEffect(() => {
+    beautifyJson(rawJSON);
+  }, [tab, rawJSON, isJSONRepair]);
+
   return (
     <div className="App">
       <ToastContainer />
@@ -93,8 +81,8 @@ function App() {
             <select
               name="tabs"
               id="tabs"
-              value={tab.current}
-              onChange={tabUpdate}
+              value={tab}
+              onChange={e => setTab(e.target.value)}
             >
               <option value="4">4 Space Tab</option>
               <option value="3">3 Space Tab</option>
@@ -109,14 +97,14 @@ function App() {
               id="jsonRepair"
               name="jsonRepair"
               checked={isJSONRepair}
-              onChange={jsonRepairUpdate}
+              onChange={e => setIsJSONRepair(e.target.checked)}
             />
             <label htmlFor="jsonRepair"> Repair JSON</label>
           </div>
         </section>
         <section id="mainForm">
           <div>
-            <textarea value={rawJSON} onChange={beautify} placeholder="JSON Data"/>
+            <textarea value={rawJSON} onChange={e => setRawJSON(e.target.value)} placeholder="JSON Data"/>
           </div>
           <div>
             {formattedJSON ? (
