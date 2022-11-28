@@ -1,0 +1,168 @@
+:root {
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  width: 100%;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+#root,
+.App,
+.App #hero {
+  width: 100%;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+.App #hero {
+  height: 46px;
+  background-color: #f9f9f9;
+  color: #242424;
+  align-items: left;
+  display: flex;
+}
+
+
+.App #hero.error {    
+  background: #f93434;
+  color: #FFF;
+}
+
+.App #hero>* {
+  display: block;
+}
+
+.App #hero>span {
+  line-height: 54px;
+  margin-left: 10px;
+  color: #484848;
+}
+
+
+.App #hero.error>div {
+  color: #FFF;    
+  position: absolute;
+  width: 100%;
+  font-weight: bold;
+  line-height: 50px;
+}
+
+.App #hero>h1 {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  margin-left: 20px;
+}
+
+.App #hero.error>h1 {
+  color: #dd1a1a;
+}
+
+.App main {
+  padding: 0px 20px;
+}
+
+.App main>* {
+  width: 100%;
+  display: flex;
+  align-content: space-between;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.App main>#mainForm {
+  height: calc(100vh - 125px);
+}
+
+.App main>#config {
+  justify-content: unset;
+  gap: 20px;
+}
+
+.App main>#config>div:nth-child(2) {
+  padding-top: 5px;
+}
+
+main>#mainForm>div {
+  text-align: left;
+}
+
+main>#mainForm>div:last-child {
+  position: relative;
+}
+
+main>#mainForm>div {
+  width: 48%;
+}
+
+main>#mainForm>div>textarea {
+  width: 100%;
+}
+
+main>#mainForm>div,
+main>#mainForm>div>textarea {
+  height: calc(100vh - 145px);
+  height: -moz-available;
+  height: -webkit-fill-available;
+  height: fill-available;
+}
+
+main>#mainForm>div>textarea {
+  resize: none;
+}
+
+
+main>#mainForm>div>textarea::placeholder {
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: calc(100vh - 145px);
+  font-weight: bold;
+  text-align: center;
+  vertical-align: middle;
+}
+
+main>#mainForm>div>pre {
+  margin: 0px;
+  height: 100%;
+  overflow-y: scroll;
+}
+
+main>#mainForm>div>button {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 50px;
+  height: 50px;
+  font-size: 1.2rem;
+  right: 25px;
+}
+
+main>#mainForm>div:nth-child(2) span {
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+section#message>div {
+  background: #f93434;
+  color: #FFF;
+  width: 100%;
+  padding: 10px;
+}
+
+select {
+  padding: 5px;
+}
