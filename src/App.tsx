@@ -54,7 +54,7 @@ function App() {
   };
 
   const copyBtnClick = () => {
-    copy(formattedJSON);
+    copy(formattedJSON, { format: "text/plain" });
     toast.info("Copied to clipboard", {
       position: "top-center",
       autoClose: 5000,
